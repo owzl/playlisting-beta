@@ -13,10 +13,8 @@ public class DBUtil {
     private static final String USER = "playlisting_beta";
     private static final String PASSWORD = "playlisting_beta";
 
-    // JDBC 드라이버 로딩 (클래스가 로드될 때 한 번만 실행)
     static {
         try {
-            // MySQL JDBC 드라이버 클래스 로드
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("MySQL JDBC Driver 로드 성공!");
         } catch (ClassNotFoundException e) {
@@ -25,12 +23,10 @@ public class DBUtil {
         }
     }
 
-    // DB 연결 가져오기
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    // 자원 해제 (Connection, Statement, ResultSet)
     // Connection
     public static void close(Connection conn) {
         try {
@@ -48,7 +44,6 @@ public class DBUtil {
          try {
             if (stmt != null && !stmt.isClosed()) {
                 stmt.close();
-                // System.out.println("Statement 닫기 성공!"); // 디버깅용
             }
         } catch (SQLException e) {
             System.err.println("Statement 닫기 실패!");
